@@ -31,6 +31,6 @@ class ApiValidator implements Validatable
     {
         $value = (new static($value))->parse();
 
-        return $value == 'bruno';
+        return !!Api::firstWhere('hashcode', $value);
     }
 }
