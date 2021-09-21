@@ -1,6 +1,6 @@
 <?php
 
-namespace Nidavellir\Trading\Validators;
+namespace Nidavellir\Trading\Validators\Instructions;
 
 use Nidavellir\Abstracts\Contracts\Validatable;
 
@@ -15,7 +15,9 @@ class ApiValidator implements Validatable
 
     public function parse()
     {
-        return str_replace(' ', '', $this->value);
+        $this->value = str_replace(' ', '', trim($this->value));
+
+        return $this;
     }
 
     /**
@@ -27,10 +29,8 @@ class ApiValidator implements Validatable
      *
      * @return bool
      */
-    public static function validate(string $value)
+    public static function validate()
     {
-        $value = (new static($value))->parse();
-
-        return (bool) Api::firstWhere('hashcode', $value);
+        return (bool) Api::firstWhere('hashcode', $this->value);
     }
 }

@@ -22,9 +22,11 @@
         "brunofalcaodev/nidavellir-apis": "dev-master",
         "brunofalcaodev/nidavellir-exceptions": "dev-master",
         "brunofalcaodev/nidavellir-jobs": "dev-master",
+        "brunofalcaodev/nidavellir-support": "dev-master",
         "brunofalcaodev/nidavellir-webhooks": "dev-master",
         "brunofalcaodev/nidavellir-commands": "dev-master",
-        "brunofalcaodev/nidavellir-workflows": "dev-master"
+        "brunofalcaodev/nidavellir-installer": "dev-master",
+        "brunofalcaodev/nidavellir-pipelines": "dev-master"
     },
     "autoload": {
         "psr-4": {
