@@ -1,21 +1,21 @@
 <?php
 
-namespace Nidavellir\Trading\Importers;
+namespace Nidavellir\Trading\Upserters;
 
 use Nidavellir\Abstracts\Contracts\Importable;
 use Nidavellir\Cube\Models\Token;
-use Nidavellir\Jobs\Tokens\ImportTokenJob;
+use Nidavellir\Jobs\Tokens\UpsertTokenJob;
 use Nidavellir\Trading\Validators\Models\TokenValidator;
 
-class TokenImporter
+class TokenUpserter
 {
     public static function __callStatic($method, $args)
     {
-        return TokenImporterService::new()->{$method}(...$args);
+        return TokenUpserterService::new()->{$method}(...$args);
     }
 }
 
-class TokenImporterService implements Importable
+class TokenUpserterService implements Importable
 {
     public static function new(...$args)
     {
@@ -28,6 +28,6 @@ class TokenImporterService implements Importable
         TokenValidator::validate($dataset);
 
         // Trigger job.
-        ImportTokenJob::dispatch($dataset);
+        UpsertTokenJob::dispatch($dataset);
     }
 }
