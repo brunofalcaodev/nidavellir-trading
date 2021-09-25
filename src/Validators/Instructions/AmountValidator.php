@@ -7,7 +7,7 @@ use Nidavellir\Abstracts\Contracts\Validatable;
 use Nidavellir\Exceptions\ErrorException;
 use Nidavellir\Trading\Validators\Rules\ApiIsUsable;
 
-class ApiValidator implements Validatable
+class AmountValidator implements Validatable
 {
     private $key;
     private $instructions;
@@ -21,6 +21,7 @@ class ApiValidator implements Validatable
     public function parse()
     {
         $this->key = str_replace(' ', '', trim($this->key));
+        $this->key = str_replace(',', '', trim($this->key));
     }
 
     public function validate()
@@ -28,7 +29,7 @@ class ApiValidator implements Validatable
         $this->parse();
 
         $validator = Validator::make($this->instructions, [
-            'api' => ['required', 'string', new ApiIsUsable],
+            'amount' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {

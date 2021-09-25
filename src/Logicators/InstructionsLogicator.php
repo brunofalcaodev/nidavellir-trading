@@ -2,7 +2,12 @@
 
 namespace Nidavellir\Trading\Logicators;
 
-use Nidavellir\Abstracts\Contracts\Validatable;
+use Nidavellir\Abstracts\Contracts\Logicatable;
+use Nidavellir\Trading\Validators\Instructions\ActionValidator;
+use Nidavellir\Trading\Validators\Instructions\AmountValidator;
+use Nidavellir\Trading\Validators\Instructions\ApiValidator;
+use Nidavellir\Trading\Validators\Instructions\PriceValidator;
+use Nidavellir\Trading\Validators\Instructions\TokenValidator;
 
 class InstructionsLogicator
 {
@@ -12,7 +17,7 @@ class InstructionsLogicator
     }
 }
 
-class InstructionsLogicatorService implements Validatable
+class InstructionsLogicatorService implements Logicatable
 {
     public function __construct()
     {
@@ -26,13 +31,21 @@ class InstructionsLogicatorService implements Validatable
 
     public function validate(array $instructions)
     {
+        foreach ($instructions as $key => $value) {
+            (new ($this->map($key))($key, $instructions))->validate();
+        }
     }
 
-    public function map(string $instruction)
+    public function map(string $key)
     {
         $map = [
-            'api' => ApiValidator::class,
-            '',
+            'api'    => ApiValidator::class,
+            'action' => ActionValidator::class,
+            'amount' => AmountValidator::class,
+            'token'  => TokenValidator::class,
+            'price'  => PriceValidator::class,
         ];
+
+        return $map[$key];
     }
 }

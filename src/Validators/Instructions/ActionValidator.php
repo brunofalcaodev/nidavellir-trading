@@ -5,9 +5,9 @@ namespace Nidavellir\Trading\Validators\Instructions;
 use Illuminate\Support\Facades\Validator;
 use Nidavellir\Abstracts\Contracts\Validatable;
 use Nidavellir\Exceptions\ErrorException;
-use Nidavellir\Trading\Validators\Rules\ApiIsUsable;
+use Nidavellir\Trading\Validators\Rules\ActionWords;
 
-class ApiValidator implements Validatable
+class ActionValidator implements Validatable
 {
     private $key;
     private $instructions;
@@ -28,7 +28,7 @@ class ApiValidator implements Validatable
         $this->parse();
 
         $validator = Validator::make($this->instructions, [
-            'api' => ['required', 'string', new ApiIsUsable],
+            'action' => [new ActionWords],
         ]);
 
         if ($validator->fails()) {

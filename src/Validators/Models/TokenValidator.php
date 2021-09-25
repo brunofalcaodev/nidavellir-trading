@@ -17,13 +17,12 @@ class TokenValidator implements Validatable
     }
 
     /**
-     * Validates the "api" instruction.
-     * The hash code should exist in the database, should be active, and
-     * also should be part of an active user.
+     * The validation is for upserters, in this case the dataset should
+     * have the 'symbol' key in order for the token to be recorded in the
+     * tokens database.
      *
-     * @param  string $value
-     *
-     * @return bool|void
+     * @param  array  $dataset
+     * @return void|\Exception
      */
     public static function validate(array $dataset)
     {
