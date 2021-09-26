@@ -6,8 +6,9 @@ use Nidavellir\Abstracts\Contracts\Logicatable;
 use Nidavellir\Trading\Validators\Instructions\ActionValidator;
 use Nidavellir\Trading\Validators\Instructions\AmountValidator;
 use Nidavellir\Trading\Validators\Instructions\ApiValidator;
-use Nidavellir\Trading\Validators\Instructions\PriceValidator;
+use Nidavellir\Trading\Validators\Instructions\IntegrationValidator;
 use Nidavellir\Trading\Validators\Instructions\TokenValidator;
+use Nidavellir\Trading\Validators\Instructions\TypeValidator;
 
 class InstructionsLogicator
 {
@@ -43,7 +44,15 @@ class InstructionsLogicatorService implements Logicatable
             'action' => ActionValidator::class,
             'amount' => AmountValidator::class,
             'token'  => TokenValidator::class,
-            'price'  => PriceValidator::class,
+            'type'  => TypeValidator::class,
+            /**
+             * The integration validator is special. Basically it will
+             * validate the interdependency between instructions and between
+             * instruction values. For instance if we have type=limit we need
+             * to have a price instruction (TODO). For now only market orders
+             * are available.
+             */
+            'integration' => IntegrationValidator::class,
         ];
 
         return $map[$key];

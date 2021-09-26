@@ -2,18 +2,11 @@
 
 namespace Nidavellir\Trading\Validators\Models;
 
-use Nidavellir\Abstracts\Contracts\Validatable;
-
-class TokenValidator implements Validatable
+class TokenValidator
 {
     public function __construct()
     {
         //
-    }
-
-    public function parse()
-    {
-        return $this;
     }
 
     /**

@@ -33,6 +33,7 @@ class ApiIsUsable implements Rule
         // Api hashcode exists?
         if (! $api) {
             $this->message = 'Unknown api hashcode';
+
             return false;
         }
 

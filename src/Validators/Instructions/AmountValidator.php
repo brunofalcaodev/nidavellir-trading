@@ -5,7 +5,6 @@ namespace Nidavellir\Trading\Validators\Instructions;
 use Illuminate\Support\Facades\Validator;
 use Nidavellir\Abstracts\Contracts\Validatable;
 use Nidavellir\Exceptions\ErrorException;
-use Nidavellir\Trading\Validators\Rules\ApiIsUsable;
 
 class AmountValidator implements Validatable
 {

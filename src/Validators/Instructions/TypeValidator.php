@@ -4,7 +4,7 @@ namespace Nidavellir\Trading\Validators\Instructions;
 
 use Nidavellir\Abstracts\Contracts\Validatable;
 
-class PriceValidator implements Validatable
+class TypeValidator implements Validatable
 {
     private $value;
     private $dataset;
